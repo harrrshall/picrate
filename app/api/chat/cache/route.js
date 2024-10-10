@@ -105,15 +105,13 @@ function parseAnalysis(analysis) {
 function calculateFinalScore(results) {
   if (!results) return 0;
 
-  // const scoreKeys = ["Golden Ratio", "Facial Symmetry", "Averageness",
-  //   "Facial Feature Ratios", "Dress Code", "Picture Angle"];
+  const scoreKeys = ["Golden Ratio", "Facial Symmetry", "Averageness",
+    "Facial Feature Ratios", "Dress Code", "Picture Angle"];
 
-  // const scores = scoreKeys.map(key => parseFloat(results[key]) || 0);
-  // const sum = 85;
-  return sum;
+  const scores = scoreKeys.map(key => parseFloat(results[key]) || 0);
+  const sum = scores.reduce((acc, curr) => acc + curr, 0);
+  return Math.round((sum / 60) * 100);
 }
-//   const sum = scores.reduce((acc, curr) => acc + curr, 0);
-  // return Math.round((sum / 60) * 100) - 10;
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);

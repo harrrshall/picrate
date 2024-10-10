@@ -142,7 +142,7 @@ export default function PicRate() {
 
   const handleShare = (platform: string) => {
     const shareText = `I just got rated ${attractiveness}% attractive on PicRate! Check it out!`
-    const shareUrl = 'https://picrate.example.com' // Replace with your actual URL
+    const shareUrl = 'https://picrate.vercel.app/' // Replace with your actual URL
 
     switch (platform) {
       case 'Facebook':

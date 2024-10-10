@@ -142,7 +142,7 @@ export default function PicRate() {
 
   const handleShare = (platform: string) => {
     const shareText = `I just got rated ${attractiveness}% attractive on PicRate! Check it out!`
-    const shareUrl = 'https://picrate.vercel.app/' // Replace with your actual URL
+    const shareUrl = 'https://picrate.example.com' // Replace with your actual URL
 
     switch (platform) {
       case 'Facebook':
@@ -209,39 +209,39 @@ const updateTopScorers = async (name: string, score: number, hash: string, image
   }
 };
 
-  const TopScorersSection = () => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      className="w-full max-w-4xl mb-8"
-    >
-      <h3 className="text-2xl font-semibold text-orange-500 mb-4">Top Scorers</h3>
-      <div className="flex justify-between space-x-4">
-        {topScorers.map((scorer, index) => (
-          <Card key={index} className="flex-1">
-            <CardContent className="p-4 text-center">
-              <div className="w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden">
-                <Image
-                  src={scorer.avatar || '/avatar-placeholder.png'}
-                  alt={scorer.name}
-                  width={80}
-                  height={80}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
-                />
-              </div>
-              <p className="font-semibold">{scorer.name}</p>
-              <p className="text-orange-500">{scorer.score}%</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </motion.div>
-  );
+const TopScorersSection = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.2 }}
+    className="w-full max-w-4xl mb-8"
+  >
+    <h3 className="text-2xl font-semibold text-orange-500 mb-4">Top Scorers</h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {topScorers.map((scorer, index) => (
+        <Card key={index} className="flex-1">
+          <CardContent className="p-4 text-center">
+            <div className="w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden">
+              <Image
+                src={scorer.avatar || '/avatar-placeholder.png'}
+                alt={scorer.name}
+                width={80}
+                height={80}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            </div>
+            <p className="font-semibold">{scorer.name}</p>
+            <p className="text-orange-500">{scorer.score}%</p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </motion.div>
+);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-pink-100 to-orange-100">
@@ -261,22 +261,22 @@ const updateTopScorers = async (name: string, score: number, hash: string, image
       </motion.header>
 
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center justify-center">
-        <AnimatePresence mode="wait">
-          {!image ? (
-            <motion.div
-              key="main-section"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="w-full max-w-4xl text-center"
-            >
-              <h2 className="text-4xl md:text-6xl font-bold text-orange-500 mb-4">
-                Rate Your Look 🔥
-              </h2>
-              <p className="text-xl text-gray-700 mb-8">
-                Enter your name, upload your photo, and get instant feedback on your style!
-              </p>
+      <AnimatePresence mode="wait">
+        {!image ? (
+          <motion.div
+            key="main-section"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-4xl text-center"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-orange-500 mb-4">
+              Rate Your Look 🔥
+            </h2>
+            <p className="text-xl text-gray-700 mb-8">
+              Enter your name, upload your photo, and get instant feedback on your style!
+            </p>
 
               <TopScorersSection />
               <div className="mb-8 flex justify-center">
